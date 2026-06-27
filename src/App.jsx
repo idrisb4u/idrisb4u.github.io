@@ -77,7 +77,7 @@ export default function App() {
             </div>
           </div>
 
-          <div style={{ flex: 1, minWidth: '300px' }}>
+          <div style={{ flex: 1, minWidth: '0' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
               <span style={{ 
                 fontSize: '0.75rem', 

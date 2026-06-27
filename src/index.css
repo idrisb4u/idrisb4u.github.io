@@ -378,6 +378,22 @@ h1, h2, h3, h4 {
   .chat-input-panel {
     padding: 12px 16px calc(12px + env(safe-area-inset-bottom)) !important;
   }
+  .main-content {
+    padding: 16px !important;
+  }
+  .glass-card {
+    padding: 16px !important;
+  }
+  .timeline {
+    padding-left: 20px !important;
+  }
+  .timeline-dot {
+    left: -20px !important;
+  }
+  body {
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
 }
 
 @keyframes slideUp {
