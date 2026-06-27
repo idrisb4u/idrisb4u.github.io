@@ -26,13 +26,18 @@ export default function Chatbot({ isMobileOpen, onClose }) {
   }, [messages, isLoading]);
 
   useEffect(() => {
+    const html = document.documentElement;
+    const body = document.body;
     if (isMobileOpen) {
-      document.body.style.overflow = 'hidden';
+      html.classList.add('lock-scroll');
+      body.classList.add('lock-scroll');
     } else {
-      document.body.style.overflow = '';
+      html.classList.remove('lock-scroll');
+      body.classList.remove('lock-scroll');
     }
     return () => {
-      document.body.style.overflow = '';
+      html.classList.remove('lock-scroll');
+      body.classList.remove('lock-scroll');
     };
   }, [isMobileOpen]);
 
@@ -157,17 +162,6 @@ export default function Chatbot({ isMobileOpen, onClose }) {
             <button 
               onClick={onClose}
               className="chat-close-btn"
-              style={{
-                background: 'none',
-                border: 'none',
-                color: 'var(--text-secondary)',
-                cursor: 'pointer',
-                padding: '4px',
-                display: 'none',
-                alignItems: 'center',
-                justifyContent: 'center',
-                transition: 'var(--transition-smooth)'
-              }}
             >
               <X size={20} />
             </button>

@@ -389,4 +389,12 @@ h1, h2, h3, h4 {
   }
 }
 
+.lock-scroll {
+  overflow: hidden !important;
+  height: 100% !important;
+  position: fixed !important;
+  width: 100% !important;
+}
+
+
 
