@@ -361,6 +361,13 @@ h1, h2, h3, h4 {
   color: var(--text-primary);
 }
 
+.hero-section {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
 @media (max-width: 1024px) {
   .chat-fab {
     display: flex;
@@ -409,13 +416,6 @@ h1, h2, h3, h4 {
   .hero-badge-container {
     justify-content: center;
   }
-}
-
-.hero-section {
-  display: flex;
-  gap: 30px;
-  align-items: center;
-  flex-wrap: wrap;
 }
 
 @keyframes slideUp {
