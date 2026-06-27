@@ -11,34 +11,22 @@ const getCompanyLogo = (company) => {
   const cleanCompany = company.toLowerCase();
   if (cleanCompany.includes('eaton')) {
     return (
-      <svg viewBox="0 0 200 45" width="70" height="16" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
-        <text x="0" y="34" fontFamily="'Outfit', sans-serif" fontWeight="800" fontSize="38" letterSpacing="-1px" fill="#2563eb">EATON</text>
-      </svg>
+      <img src="/assets/eaton_logo.png" alt="Eaton Logo" style={{ height: '22px', objectFit: 'contain', display: 'inline-block', verticalAlign: 'middle' }} />
     );
   }
   if (cleanCompany.includes('mphasis')) {
     return (
-      <svg viewBox="0 0 200 45" width="80" height="16" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
-        <circle cx="15" cy="20" r="10" fill="none" stroke="#2563eb" strokeWidth="3" />
-        <polygon points="12,20 17,15 17,25" fill="#d97706" />
-        <text x="32" y="27" fontFamily="'Inter', sans-serif" fontWeight="700" fontSize="20" fill="#ffffff">mphasis</text>
-      </svg>
+      <img src="/assets/mphasis_logo.png" alt="Mphasis Logo" style={{ height: '22px', objectFit: 'contain', display: 'inline-block', verticalAlign: 'middle' }} />
     );
   }
   if (cleanCompany.includes('oracle')) {
     return (
-      <svg viewBox="0 0 200 45" width="75" height="15" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
-        <text x="0" y="32" fontFamily="'Outfit', sans-serif" fontWeight="800" fontSize="32" letterSpacing="-1.5px" fill="#f80000">ORACLE</text>
-      </svg>
+      <img src="/assets/oracle_logo.png" alt="Oracle Logo" style={{ height: '18px', objectFit: 'contain', display: 'inline-block', verticalAlign: 'middle' }} />
     );
   }
   if (cleanCompany.includes('csc')) {
     return (
-      <svg viewBox="0 0 200 45" width="60" height="15" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
-        <polygon points="4,4 15,4 11,18 0,18" fill="#2563eb" />
-        <polygon points="18,4 29,4 25,18 14,18" fill="#d97706" />
-        <text x="35" y="18" fontFamily="'Outfit', sans-serif" fontWeight="800" fontSize="18" fill="#ffffff">CSC</text>
-      </svg>
+      <img src="/assets/csc_logo.png" alt="CSC Logo" style={{ height: '20px', objectFit: 'contain', display: 'inline-block', verticalAlign: 'middle' }} />
     );
   }
   return null;
@@ -79,7 +67,7 @@ export default function App() {
               position: 'absolute',
               bottom: '-5px',
               right: '-5px',
-              backgroundColor: '#0b0f19',
+              backgroundColor: 'var(--bg-primary)',
               padding: '6px',
               borderRadius: '50%'
             }}>
@@ -144,23 +132,7 @@ export default function App() {
         </section>
 
         {/* Bio Card */}
-        <section className="glass-card" style={{ marginBottom: '45px', position: 'relative', overflow: 'hidden' }}>
-          <div style={{
-            position: 'absolute',
-            top: 0,
-            right: 0,
-            width: '150px',
-            height: '100%',
-            opacity: 0.1,
-            pointerEvents: 'none'
-          }}>
-            <img 
-              src={PROFILE_DATA.photos.photo2} 
-              alt="Eaton AI Leadership" 
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-              onError={(e) => { e.currentTarget.style.display = 'none'; }}
-            />
-          </div>
+        <section className="glass-card" style={{ marginBottom: '45px' }}>
           <h2 style={{ fontSize: '1.25rem', marginBottom: '12px', color: 'var(--accent-cyan)' }}>Executive Summary</h2>
           <p style={{ color: 'var(--text-secondary)', fontSize: '0.98rem', lineHeight: 1.7 }}>
             {PROFILE_DATA.executiveProfile}
@@ -224,9 +196,9 @@ export default function App() {
                   <div 
                     className="glass-card" 
                     style={{ 
-                      cursor: 'pointer',
-                      borderLeft: expandedExperience === idx ? '3px solid var(--accent-cyan)' : '1px solid var(--border-color)',
-                      background: expandedExperience === idx ? 'rgba(17, 24, 39, 0.9)' : 'var(--bg-card)'
+                       cursor: 'pointer',
+                       borderLeft: expandedExperience === idx ? '3px solid var(--accent-cyan)' : '1px solid var(--border-color)',
+                       background: expandedExperience === idx ? 'var(--bg-secondary)' : 'var(--bg-card)'
                     }}
                     onClick={() => setExpandedExperience(idx)}
                   >
@@ -240,7 +212,7 @@ export default function App() {
                       </div>
                       <span style={{ 
                         fontSize: '0.8rem', 
-                        backgroundColor: 'rgba(255,255,255,0.04)', 
+                        backgroundColor: 'var(--bg-tab)', 
                         padding: '4px 10px', 
                         borderRadius: '12px',
                         border: '1px solid var(--border-color)',
@@ -304,7 +276,7 @@ export default function App() {
                         onMouseOut={(e) => {
                           e.currentTarget.style.borderColor = 'var(--border-color)';
                           e.currentTarget.style.color = 'var(--text-secondary)';
-                          e.currentTarget.style.background = 'rgba(255,255,255,0.03)';
+                          e.currentTarget.style.background = 'var(--bg-suggestion)';
                         }}
                       >
                         {skill}
@@ -332,7 +304,7 @@ export default function App() {
                       style={{
                         padding: '12px 16px',
                         borderRadius: '10px',
-                        background: 'rgba(255, 255, 255, 0.02)',
+                        background: 'var(--bg-tab)',
                         border: '1px solid var(--border-color)',
                         fontSize: '0.88rem',
                         color: 'var(--text-secondary)',

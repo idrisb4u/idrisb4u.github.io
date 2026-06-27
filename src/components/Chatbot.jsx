@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Send, Bot, User, Sparkles, AlertCircle } from 'lucide-react';
-import { RESUME_TEXT, SYSTEM_INSTRUCTION, SUGGESTION_QUESTIONS } from '../context';
+import { SUGGESTION_QUESTIONS } from '../context';
 
 export default function Chatbot() {
   const [messages, setMessages] = useState([
@@ -44,80 +44,29 @@ export default function Chatbot() {
     setIsLoading(true);
     setError(null);
 
-    const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
-    if (!apiKey) {
-      setTimeout(() => {
-        setMessages((prev) => [
-          ...prev,
-          {
-            id: Date.now().toString(),
-            sender: 'bot',
-            text: "Error: Gemini API Key not found in environment. Please check that .env is configured correctly.",
-            time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-            isError: true
-          }
-        ]);
-        setIsLoading(false);
-      }, 800);
-      return;
-    }
+    const backendUrl = import.meta.env.VITE_BACKEND_API_URL || '/api/chat';
 
     try {
-      // Build conversation turns for Gemini
-      // Ground the conversation using the resume text
-      const requestContents = [
-        {
-          role: 'user',
-          parts: [{ text: `Here is the professional resume and background of Idris Ali:\n\n${RESUME_TEXT}\n\nGround all your responses in this context.` }]
+      const response = await fetch(backendUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
         },
-        {
-          role: 'model',
-          parts: [{ text: "Understood. I am Idris Ali's AI advisor. I will speak in the first person as Idris Ali and answer all questions based exactly on this professional resume and background context." }]
-        }
-      ];
-
-      // Add actual dialogue history
-      // We filter out welcome message and map roles
-      messages.forEach(msg => {
-        if (msg.id === 'welcome' || msg.isError) return;
-        requestContents.push({
-          role: msg.sender === 'user' ? 'user' : 'model',
-          parts: [{ text: msg.text }]
-        });
+        body: JSON.stringify({
+          messages: messages,
+          userText: userText
+        })
       });
-
-      // Add current message
-      requestContents.push({
-        role: 'user',
-        parts: [{ text: userText }]
-      });
-
-      const response = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            contents: requestContents,
-            systemInstruction: {
-              parts: [{ text: SYSTEM_INSTRUCTION }]
-            },
-            generationConfig: {
-              temperature: 0.4,
-              maxOutputTokens: 1000,
-            }
-          })
-        }
-      );
 
       if (!response.ok) {
-        throw new Error(`Gemini API returned status ${response.status}`);
+        if (response.status === 429) {
+          throw new Error("QUOTA_EXCEEDED");
+        }
+        throw new Error(`API returned status ${response.status}`);
       }
 
       const data = await response.json();
-      const botResponseText = data.candidates?.[0]?.content?.parts?.[0]?.text;
+      const botResponseText = data.text;
 
       if (!botResponseText) {
         throw new Error("Invalid API response format");
@@ -134,13 +83,18 @@ export default function Chatbot() {
       ]);
     } catch (err) {
       console.error(err);
-      setError("Unable to get response from Gemini. Please try again.");
+      const isQuotaError = err.message === "QUOTA_EXCEEDED";
+      const errorMessage = isQuotaError
+        ? "I apologize, but my Gemini API daily free tier quota has been exceeded. If you are the owner, please check your Google AI Studio project billing or configure a new API key to restore service."
+        : "My apologies, I ran into a connection issue. Can you please re-ask that question?";
+      
+      setError(isQuotaError ? "API Quota Exceeded" : "Unable to get response from Gemini. Please try again.");
       setMessages((prev) => [
         ...prev,
         {
           id: Date.now().toString(),
           sender: 'bot',
-          text: "My apologizes, I ran into a connection issue. Can you please re-ask that question?",
+          text: errorMessage,
           time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
           isError: true
         }
@@ -159,7 +113,7 @@ export default function Chatbot() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        background: 'rgba(17, 24, 39, 0.4)'
+        background: 'var(--bg-header)'
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           <div style={{
@@ -246,10 +200,10 @@ export default function Chatbot() {
               padding: '12px 16px',
               borderRadius: msg.sender === 'user' ? '16px 16px 4px 16px' : '16px 16px 16px 4px',
               background: msg.sender === 'user' 
-                ? 'linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(6, 182, 212, 0.2))' 
-                : 'rgba(255, 255, 255, 0.04)',
+                ? 'linear-gradient(135deg, rgba(37, 99, 235, 0.15), rgba(217, 119, 6, 0.15))' 
+                : 'var(--bg-bubble-bot)',
               border: '1px solid',
-              borderColor: msg.sender === 'user' ? 'rgba(6, 182, 212, 0.3)' : 'var(--border-color)',
+              borderColor: msg.sender === 'user' ? 'rgba(37, 99, 235, 0.25)' : 'var(--border-color)',
               fontSize: '0.9rem',
               whiteSpace: 'pre-wrap',
               color: msg.isError ? '#ef4444' : 'var(--text-primary)'
@@ -279,7 +233,7 @@ export default function Chatbot() {
             <div style={{
               padding: '12px 18px',
               borderRadius: '16px 16px 16px 4px',
-              background: 'rgba(255, 255, 255, 0.04)',
+              background: 'var(--bg-bubble-bot)',
               border: '1px solid var(--border-color)',
               display: 'flex',
               gap: '4px',
@@ -304,7 +258,7 @@ export default function Chatbot() {
                 key={i}
                 onClick={() => handleSendMessage(q)}
                 style={{
-                  background: 'rgba(255, 255, 255, 0.03)',
+                  background: 'var(--bg-suggestion)',
                   border: '1px solid var(--border-color)',
                   borderRadius: '8px',
                   padding: '8px 12px',
@@ -320,7 +274,7 @@ export default function Chatbot() {
                   e.currentTarget.style.color = 'var(--accent-cyan)';
                 }}
                 onMouseOut={(e) => {
-                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.03)';
+                  e.currentTarget.style.background = 'var(--bg-suggestion)';
                   e.currentTarget.style.borderColor = 'var(--border-color)';
                   e.currentTarget.style.color = 'var(--text-secondary)';
                 }}
@@ -333,7 +287,7 @@ export default function Chatbot() {
       )}
 
       {/* Input */}
-      <div style={{ padding: '20px', borderTop: '1px solid var(--border-color)', background: 'rgba(10, 15, 30, 0.5)' }}>
+      <div style={{ padding: '20px', borderTop: '1px solid var(--border-color)', background: 'var(--bg-input-panel)' }}>
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -349,7 +303,7 @@ export default function Chatbot() {
             placeholder="Ask Idris anything..."
             style={{
               flex: 1,
-              background: 'rgba(255, 255, 255, 0.03)',
+              background: 'var(--bg-input)',
               border: '1px solid var(--border-color)',
               borderRadius: '12px',
               padding: '12px 16px',
@@ -368,9 +322,9 @@ export default function Chatbot() {
               width: '45px',
               height: '45px',
               borderRadius: '12px',
-              background: input.trim() ? 'linear-gradient(135deg, var(--accent-blue), var(--accent-cyan))' : 'rgba(255, 255, 255, 0.05)',
+              background: input.trim() ? 'linear-gradient(135deg, var(--accent-blue), var(--accent-cyan))' : 'var(--bg-tab)',
               border: 'none',
-              color: input.trim() ? '#0b0f19' : 'var(--text-muted)',
+              color: input.trim() ? '#ffffff' : 'var(--text-muted)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',

@@ -41,7 +41,7 @@ export const PROFILE_DATA = {
       period: "2025 – Present",
       highlights: [
         "Partner with CXO and senior business/IT leaders to translate enterprise strategy into a prioritized AI innovation portfolio; define value hypotheses, ROI models, and success metrics for each use case before build begins.",
-        "Run the end-to-end AI Factory — intake, prioritization, rapid experimentation, and stage-gate decision frameworks that govern what enters the lab, what scales to production, and what stops — turning concepts into production-ready solutions, not one-off pilots.",
+        "Run the end-to-end AI Product Team — intake, prioritization, rapid experimentation, and stage-gate decision frameworks that govern what enters the lab, what scales to production, and what stops — turning concepts into production-ready solutions, not one-off pilots.",
         "Act as translator between business ambition and technical reality; define business cases for funding and sponsorship, align C-suite on priorities and trade-offs, and drive AI adoption across multiple business lines as a horizontal capability.",
         "Architect AI-enabled operating models across IT Operations, Service Desk, Legal, and HR — structuring solutions for repeatability, reuse, and enterprise-scale deployment.",
         "Deliver enterprise AI agents and copilots using LLM, RAG, and agentic architectures — ensuring production readiness, LLMOps governance, responsible AI practices, and scalable delivery infrastructure.",
@@ -146,7 +146,7 @@ Enterprise AI leader with 20+ years spanning strategy consulting, digital transf
 PROFESSIONAL EXPERIENCE
 AI & Data Leader — Enterprise AI Innovation & Delivery | Eaton (2025 – Present)
 - Lead the AI Innovation agenda: Partner with CXO and senior business/IT leaders to translate enterprise strategy into a prioritized AI innovation portfolio; define value hypotheses, ROI models, and success metrics for each use case before build begins.
-- Build & govern the innovation engine: Run the end-to-end AI Factory — intake, prioritization, rapid experimentation, and stage-gate decision frameworks that govern what enters the lab, what scales to production, and what stops — turning concepts into production-ready solutions, not one-off pilots.
+- Build & govern the innovation engine: Run the end-to-end AI Product Team — intake, prioritization, rapid experimentation, and stage-gate decision frameworks that govern what enters the lab, what scales to production, and what stops — turning concepts into production-ready solutions, not one-off pilots.
 - Bridge business and technology: Act as translator between business ambition and technical reality; define business cases for funding and sponsorship, align C-suite on priorities and trade-offs, and drive AI adoption across multiple business lines as a horizontal capability.
 - AI adoption across the enterprise: Architect AI-enabled operating models across IT Operations, Service Desk, Legal, and HR — structuring solutions for repeatability, reuse, and enterprise-scale deployment.
 - Operationalize GenAI & Agentic AI: Deliver enterprise AI agents and copilots using LLM, RAG, and agentic architectures — ensuring production readiness, LLMOps governance, responsible AI practices, and scalable delivery infrastructure.
@@ -167,12 +167,19 @@ Manager / Technical Lead — Customer & Product MDM | Eaton (2011 – 2019)
 - Led global Customer and Product Master Data Management programs across multiple business units — building the trusted data foundation underpinning analytics, reporting, and AI/ML readiness.
 - Delivered Oracle MDM implementations, integrations, and syndication (Informatica P360); partnered with global business and data leaders on data quality, stewardship, and governance.
 
-Senior Consultant — Enterprise Strategy & Integration | Mphasis (2009 – 2011)
-- Led Oracle ERP integration strategy for a $10B acquisition program — multi-stakeholder, multi-geography delivery with rigorous program controls, business case governance, and risk management.
-- Advised client executives on integration architecture, sequencing, and operating-model transitions — consulting-side experience directly applicable to enterprise-scale AI transformation programs.
+Senior Consultant — Enterprise Strategy & Integration | Mphasis (July 2009 – July 2011)
+- Mphasis Experience Summary: During your tenure at Mphasis in Pune, you served as an ERP Senior Consultant leading the integration of 2 large acquisitions for the world's largest antivirus client.
+- System Implementation: Your work centered on executing and supporting Oracle Apps deployments.
+- Module Specialization: Specialized in Customer Data Hub (CDH) implementations, continuing your technical focus on complex data models and Master Data Management (MDM).
+- Tenure: Spanned from July 2009 to July 2011.
 
-Project Lead — Product Development | Oracle (2005 – 2009)
-- Product engineering across Oracle Customer Data Hub, Tax, and Receivables modules (R12 and Fusion) deep grounding in product-grade software engineering, Agile/Lean delivery, and enterprise-scale system design.
+Project Lead — Product Development | Oracle (June 2005 – October 2009)
+- Oracle Experience Summary: During your time at Oracle in Hyderabad, you served as a Project Leader, primarily driving product development for the Oracle E-Business Suite and Fusion applications.
+- Module Specialization: Focused extensively on the Customer Data Hub, Tax, and Receivables modules for both Oracle R12 and Fusion.
+- Technical Execution: Hands-on technical design, development, and ongoing system support.
+- System Enhancement: Managed the maintenance and continuous enhancement of various Oracle applications and complex data models.
+- Data Architecture: Driven Master Data Management (MDM) initiatives.
+- Tenure: Core tenure in this role was from June 2005 to October 2009.
 
 Software Engineer — Insurance & Financial Services | CSC (2004 – 2005)
 - Projects and Enhancements on General Insurance and Financial Services product for one of the largest Insurance company in US. 
@@ -184,17 +191,34 @@ Certifications:
 - Microsoft Certified: Power Platform Solution Architect Expert
 - TOGAF® Certification — Enterprise Architecture
 - Certified SAFe® Product Owner / Product Manager (POPM)
+
+PERSONAL BACKGROUND & FAMILY (AskIdris / AskJOE access only)
+- Roots and Family Background: I was born on August 31, 1982. Based on my family records and early documents, I was born and did my schooling in my hometown of Rajnandgaon, Chhattisgarh. I did my schooling in Wesleyan School Rajnandgaon and then moved to Indore for my Engineering.
+- Family Foundations: My parents laid a strong, hardworking foundation for my family in this town. My father, Hunaid Ali, was a shop owner and held commercial shops as well as residential property in Hasan Market, Rajnandgaon. My mother, Anjum Ali, dedicated her time working as a teacher in Rajnandgaon. I grew up in a close-knit household with one sibling—a sister named Fatema Anis (who went on to become a teacher in Dubai).
+- Cities I've Lived In: My personal files and employment history show that I have lived in a few key cities throughout my life:
+  * Rajnandgaon, Chhattisgarh: My hometown where I was born, raised, and completed my schooling.
+  * Hyderabad, Telangana: I lived in the Madhapur area of Hyderabad (specifically Kaveri Hills) during my earlier career when I was working as a Software Engineer.
+  * Pune, Maharashtra: My current home base, where I relocated for career growth and have established my family life.
+- My Immediate Family: Today, my life is anchored in Pune with my wife and daughter. I am married to Tasneem Salva Shakir (born August 24, 1988), who is a highly experienced Lead/Senior UX/UI Designer. Together, we have a daughter named Fizza Ali, who was born on November 30, 2018.
+- Diverse Interests: I have a diverse set of interests that I enjoy:
+  1. Music
+  2. Enterprise AI and Software Architecture
+  3. Finance, Investing, and Market Analysis
+  4. Travel Planning and Outdoor Exploration
+  5. DIY Home Improvement and Automation
+  6. Health, Wearables, and Wellness
+  7. Local Food and Dining
 `;
 
 export const SYSTEM_INSTRUCTION = `
-You are the AI twin for Idris Ali, representing him in this interactive conversation called "Ask Idris". Your job is to answer questions as if you are Idris Ali answering them yourself.
+You are the AI twin for Idris Ali, representing him in this interactive conversation called "Ask Idris" (also referred to as "AskJOE"). Your job is to answer questions as if you are Idris Ali answering them yourself.
 Adopt the following persona, guidelines, and constraints:
 
 PERSONA & TONE:
 - You are Idris Ali, an Enterprise AI and Data Leader.
 - Tone: Professional, strategic, executive, yet pragmatic and warm. You speak like a seasoned director/consultant who bridges the gap between boardroom value and technical delivery.
 - Speak in the first person ("I", "my", "we" when referring to my teams at Eaton).
-- When discussing AI, focus on value realization, repeatable factory models, intake pipelines, stage-gate governance, agentic design patterns, and enterprise adoption rather than just raw code.
+- When discussing AI, focus on value realization, repeatable product models, intake pipelines, stage-gate governance, agentic design patterns, and enterprise adoption rather than just raw code.
 
 CORE KNOWLEDGE:
 - Use the provided resume text and profile data as your source of truth.
@@ -212,7 +236,7 @@ GUIDELINES & CONSTRAINTS:
 `;
 
 export const SUGGESTION_QUESTIONS = [
-  "What is your approach to running an AI Factory?",
+  "What is your approach to running an AI Product Team?",
   "How did you deliver $5M+ in annual benefits at Eaton?",
   "What makes you different from other enterprise AI leaders?",
   "Tell me about your experience with Agentic AI & LLMs.",
