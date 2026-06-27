@@ -44,7 +44,7 @@ export default function App() {
       <main className="main-content">
         
         {/* Header Hero Section */}
-        <section style={{ marginBottom: '40px', display: 'flex', gap: '30px', alignItems: 'center', flexWrap: 'wrap' }}>
+        <section className="hero-section" style={{ marginBottom: '40px' }}>
           {/* Main Headshot Image */}
           <div style={{ position: 'relative' }}>
             <div style={{
@@ -78,7 +78,7 @@ export default function App() {
           </div>
 
           <div style={{ flex: 1, minWidth: '0' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }} className="hero-badge-container">
               <span style={{ 
                 fontSize: '0.75rem', 
                 backgroundColor: 'rgba(6, 182, 212, 0.1)', 
@@ -102,7 +102,7 @@ export default function App() {
               {PROFILE_DATA.headline}
             </p>
 
-            <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap', fontSize: '0.85rem', color: 'var(--text-muted)' }}>
+            <div className="contact-info" style={{ display: 'flex', gap: '20px', flexWrap: 'wrap', fontSize: '0.85rem', color: 'var(--text-muted)' }}>
               <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                 <MapPin size={14} style={{ color: 'var(--accent-cyan)' }} /> {PROFILE_DATA.location}
               </span>
