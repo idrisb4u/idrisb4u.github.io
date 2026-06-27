@@ -25,6 +25,18 @@ export default function Chatbot({ isMobileOpen, onClose }) {
     scrollToBottom();
   }, [messages, isLoading]);
 
+  useEffect(() => {
+    if (isMobileOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMobileOpen]);
+
+
   const handleSendMessage = async (textToSend) => {
     const userText = textToSend || input;
     if (!userText.trim()) return;
@@ -107,7 +119,7 @@ export default function Chatbot({ isMobileOpen, onClose }) {
   return (
     <div className={`chat-panel ${isMobileOpen ? 'mobile-open' : ''}`}>
       {/* Header */}
-      <div style={{
+      <div className="chat-header" style={{
         padding: '20px',
         borderBottom: '1px solid var(--border-color)',
         display: 'flex',
@@ -217,7 +229,7 @@ export default function Chatbot({ isMobileOpen, onClose }) {
               <span>{msg.time}</span>
             </div>
             
-            <div style={{
+            <div className="chat-bubble" style={{
               padding: '12px 16px',
               borderRadius: msg.sender === 'user' ? '16px 16px 4px 16px' : '16px 16px 16px 4px',
               background: msg.sender === 'user' 
@@ -308,7 +320,7 @@ export default function Chatbot({ isMobileOpen, onClose }) {
       )}
 
       {/* Input */}
-      <div style={{ padding: '20px', borderTop: '1px solid var(--border-color)', background: 'var(--bg-input-panel)' }}>
+      <div className="chat-input-panel" style={{ padding: '20px', borderTop: '1px solid var(--border-color)', background: 'var(--bg-input-panel)' }}>
         <form
           onSubmit={(e) => {
             e.preventDefault();
