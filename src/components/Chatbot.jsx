@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Send, Bot, User, Sparkles, AlertCircle } from 'lucide-react';
+import { Send, Bot, User, Sparkles, AlertCircle, X } from 'lucide-react';
 import { SUGGESTION_QUESTIONS } from '../context';
 
-export default function Chatbot() {
+export default function Chatbot({ isMobileOpen, onClose }) {
   const [messages, setMessages] = useState([
     {
       id: 'welcome',
@@ -105,7 +105,7 @@ export default function Chatbot() {
   };
 
   return (
-    <div className="chat-panel">
+    <div className={`chat-panel ${isMobileOpen ? 'mobile-open' : ''}`}>
       {/* Header */}
       <div style={{
         padding: '20px',
@@ -139,7 +139,28 @@ export default function Chatbot() {
             </span>
           </div>
         </div>
-        <Sparkles size={18} style={{ color: 'var(--accent-cyan)', opacity: 0.8 }} />
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <Sparkles size={18} style={{ color: 'var(--accent-cyan)', opacity: 0.8 }} />
+          {onClose && (
+            <button 
+              onClick={onClose}
+              className="chat-close-btn"
+              style={{
+                background: 'none',
+                border: 'none',
+                color: 'var(--text-secondary)',
+                cursor: 'pointer',
+                padding: '4px',
+                display: 'none',
+                alignItems: 'center',
+                justifyContent: 'center',
+                transition: 'var(--transition-smooth)'
+              }}
+            >
+              <X size={20} />
+            </button>
+          )}
+        </div>
       </div>
 
       {/* Messages area */}

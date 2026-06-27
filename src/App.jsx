@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { 
   Briefcase, GraduationCap, Award, Cpu, 
   Linkedin, Mail, Phone, MapPin, 
-  ArrowRight, Shield, Sliders, TrendingUp, Layers, CheckCircle2 
+  ArrowRight, Shield, Sliders, TrendingUp, Layers, CheckCircle2,
+  MessageSquare
 } from 'lucide-react';
 import { PROFILE_DATA } from './context';
 import Chatbot from './components/Chatbot';
@@ -35,6 +36,7 @@ const getCompanyLogo = (company) => {
 export default function App() {
   const [activeTab, setActiveTab] = useState('experience');
   const [expandedExperience, setExpandedExperience] = useState(0);
+  const [isChatOpen, setIsChatOpen] = useState(false);
 
   return (
     <div className="app-container">
@@ -345,7 +347,16 @@ export default function App() {
       </main>
 
       {/* Right Pane - Chatbot Agent */}
-      <Chatbot />
+      <Chatbot isMobileOpen={isChatOpen} onClose={() => setIsChatOpen(false)} />
+
+      {/* Mobile Floating Action Button (FAB) */}
+      <button 
+        className="chat-fab" 
+        onClick={() => setIsChatOpen(true)}
+        aria-label="Open chat assistant"
+      >
+        <MessageSquare size={24} />
+      </button>
     </div>
   );
 }
